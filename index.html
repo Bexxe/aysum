@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Senin İçin</title>
+    <style>
+        /* Base Reset and Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #fdfbf7; /* Soft, warm white */
+            overflow: hidden; /* Prevent scrolling */
+            transition: background-color 2s ease-in-out;
+        }
+
+        /* Container for the initial question */
+        .intro-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .intro-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.8rem;
+            color: #2c2c2c;
+            font-weight: normal;
+            line-height: 1.4;
+            margin-bottom: 50px;
+            max-width: 90%;
+        }
+
+        /* Elegant Button */
+        button {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            border: none;
+            padding: 16px 48px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+
+        button:active {
+            transform: scale(0.95);
+            background-color: #1a1a1a;
+        }
+
+        /* Final Mirror Text */
+        .mirror-text {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 1.6rem;
+            text-align: center;
+            width: 85%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 2.5s ease-in-out;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Black Screen State */
+        body.dark-mode {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-container" id="introView">
+        <h1>Dünyanın en güzel ve en güçlü kadınını görmek ister misin?</h1>
+        <button id="yesButton">Evet</button>
+    </div>
+
+    <div class="mirror-text" id="finalView">
+        Dünyanın en güzel ve en güçlü kadını sensin.
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const yesButton = document.getElementById("yesButton");
+            const introView = document.getElementById("introView");
+            const finalView = document.getElementById("finalView");
+
+            yesButton.addEventListener("click", () => {
+                // 1. Fade out the initial text and button
+                introView.classList.add("hidden");
+
+                // 2. Smoothly transition the background to pure black
+                document.body.classList.add("dark-mode");
+
+                // 3. Wait 5 seconds, then fade in the final text
+                // 1500ms allows the background/fade out to finish before the 5s timer begins
+                setTimeout(() => {
+                    setTimeout(() => {
+                        finalView.style.opacity = "1";
+                    }, 5000); 
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
